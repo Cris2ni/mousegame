@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Сырный лабиринт — учим звук «С»</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand__icon" aria-hidden="true">С</span>
+        <div>
+          <p class="eyebrow">Играем и говорим</p>
+          <h1>Сырный лабиринт</h1>
+        </div>
+      </div>
+      <div class="controls">
+        <div id="levelLabel" class="level-badge">Уровень 1</div>
+        <div class="counter" aria-live="polite"><img src="assets/cheese.png" alt=""> <b id="score">0 / 8</b></div>
+        <button id="levelsBtn" class="menu-btn" type="button" aria-label="Выйти из уровня и выбрать другой">Уровни</button>
+        <button id="soundBtn" class="icon-btn" type="button" aria-label="Выключить звук" title="Звук">🔊</button>
+        <button id="restartBtn" class="icon-btn" type="button" aria-label="Начать уровень заново" title="Начать заново">↻</button>
+      </div>
+    </header>
+
+    <section class="game-card" aria-label="Игровое поле">
+      <div id="gameWrap" class="game-wrap">
+        <canvas id="game" width="960" height="640" aria-label="Лабиринт с мышонком, сыром и мышеловками"></canvas>
+        <div id="speechBubble" class="speech-bubble" aria-live="assertive"></div>
+      </div>
+      <div class="tip"><span>☝</span> Веди мышонка кликами. Собери весь сыр и выйди через ворота. Обходи мышеловки!</div>
+    </section>
+  </main>
+
+  <div id="levelModal" class="modal is-open" role="dialog" aria-modal="true" aria-labelledby="levelTitle">
+    <div class="modal__card modal__card--levels">
+      <button id="levelMenuCloseBtn" class="modal-close" type="button" aria-label="Закрыть меню уровней">×</button>
+      <div class="modal-intro">
+        <img src="assets/mouse.png" class="hero-mouse" alt="Весёлый мышонок в синем шарфике">
+      </div>
+      <h2 id="levelTitle">Выбери уровень</h2>
+      <p>Собери весь сыр, повторяй слоги<br><b>СА · СО · СУ · СЫ · СЭ</b><br>и только потом иди к воротам.</p>
+      <div class="level-list">
+        <button class="level-choice" data-level="1" type="button">
+          <span class="level-choice__number">1</span>
+          <span><strong>Уровень 1</strong><small class="level-choice__status">Лёгкий путь</small></span>
+        </button>
+        <button class="level-choice" data-level="2" type="button">
+          <span class="level-choice__number">2</span>
+          <span><strong>Уровень 2</strong><small class="level-choice__status">🔒 Сначала пройди предыдущий</small></span>
+        </button>
+        <button class="level-choice" data-level="3" type="button">
+          <span class="level-choice__number">3</span>
+          <span><strong>Уровень 3</strong><small class="level-choice__status">🔒 Сначала пройди предыдущий</small></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="winModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+    <div class="modal__card modal__card--win">
+      <div class="stars">✦ ✦ ✦</div>
+      <h2 id="winTitle">Уровень пройден!</h2>
+      <p>Ты собрал весь сыр и помог мышонку выйти из лабиринта!</p>
+      <div class="syllables">СА · СО · СУ · СЫ · СЭ</div>
+      <div class="modal-actions">
+        <button id="nextLevelBtn" class="primary-btn" type="button">Следующий уровень</button>
+        <button id="winLevelsBtn" class="secondary-btn" type="button">Выбрать уровень</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="loseModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loseTitle">
+    <div class="modal__card modal__card--lose">
+      <img src="assets/mousetrap.png" class="trap-preview" alt="Мышеловка">
+      <h2 id="loseTitle">Ой, мышеловка!</h2>
+      <p>Попробуй ещё раз и аккуратно обойди ловушку.</p>
+      <div class="modal-actions">
+        <button id="retryBtn" class="primary-btn" type="button">Повторить уровень</button>
+        <button id="loseLevelsBtn" class="secondary-btn" type="button">Выбрать уровень</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
